@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+
+<style>
+.myDiv {
+  border: 5px outset black;
+  background-color: goldenrod;    
+  text-align: center;
+  word-wrap: break-word;
+  
+}
+
+@font-face{
+    font-family: 'Impact';
+    src: url(impact.ttf);
+}
+
+@font-face {
+    font-family: 'Apple Chancery Cursive';
+    src: url(apc101.ttf);
+}
+
+
+
+.heading {
+    text-align: center;
+    text-shadow: -5px -4.5px 0 black, 5px -4.5px 0 black, -5px 4.5px 0 black, 5px 4.5px 0 black;
+}
+
+.signature {
+    position: absolute;
+    top: 0px;
+    left: 16px;
+    font-size: 45px;
+    font-family: Brush Script MT, Brush Script Std, cursive;
+    color: blanchedalmond;
+}
+
+.counter {
+    position: absolute;
+    top: 300px;
+    right: 40px;
+    text-align: center;
+    font-size: 20px;
+    font-family: Apple Chancery, cursive;
+   /* border: 6px solid black;*/
+    border-radius: 15px;
+    font-weight:bolder;
+}
+
+.results {
+    position: absolute;
+
+    left: 200px;
+
+    top: 344px;
+
+}
+
+
+.resultsubmit {
+    position: absolute;
+
+    left: 180px;
+
+    top: 410px;
+}
+
+</style>
+</head>
+<body onload="setup()">
+
+<style>
+    body {
+        background-image: url('https://cdn.discordapp.com/attachments/795038640404168727/835817861078843422/backg_2.jpg');
+        background-repeat: no-repeat;
+       /* background-size: cover;*/
+    }
+
+        
+    </style>
+
+
+<div class="heading">
+    <h1 style="font-size: 100px;text-align:center;color:goldenrod ; font-family:'Impact';"> 
+        Ortalama Alma Oyunu
+     </h1>
+</div>
+
+<div class="signature">
+    <!-- <img src="https://i.imgur.com/QNAZwtI.png"> -->
+</div>
+
+<div class="myDiv">
+    <h2 style="font-size:20px; text-align:center;font-family: Apple Chancery, cursive ;">
+        Ortalama oyununa hoşgeldiniz. Başlamak için başlat düğmesine tıklayınız.
+    </h2>
+   <!-- <label for="fname" style="font-family: Apple Chancery, cursive;">Sayı miktarı</label>
+    
+    <input type="number" id="fname" name="fname" style="font-size: 25px; border: 3px outset black; text-align:center;font-family:'Impact'; width: 45px; height: 45px"><br><br> -->
+    
+    <input type="button" id="checkbut"style="left: 100px;border: 2px outset black;border-radius: 15px;color: rgba(239, 239, 255, 0.822);font-size:20px; background-color: red; font-family: 'Impact'; width: 100px; height: 50px"value="Tam sayı" onclick="tamsayi()">
+    
+    <input type="button" style="color: rgba(239, 239, 255, 0.822);font-size:20px; background-color: rgb(77, 95, 134); font-family: 'Impact'; width: 100px; height: 50px"value="Başlat" onclick="setup(),func()">
+    <input type="reset" style="color: rgba(239, 239, 255, 0.822);font-size:20px; background-color: rgb(77, 95, 134); font-family:'Impact'; width: 100px; height: 50px"value="Sıfırla" onclick="silme()">
+    
+   <!-- <p style="font-style:italic;">Lütfen oyundaki sayı miktarını girdikten sonra onayla butonuna tıklayınız.</p> -->
+    <h2 id="game" style="font-family: 'Impact'; font-size: 35px; font-weight: lighter;"></h2>
+    <div class="counter" id="counterdiv"><h3 id="counter"></h3></div>
+    <div class = "results" id="results"></div>
+    <div class="resultsubmit" id="resultsubmit"></div>
+</div>
+
+
+<div class="myDiv">
+  <!--  <h2 id="game">
+    </h2>
+    </div>-->
+
+<!--<div class="counter">
+    <h3 id="counter">
+        
+    </h3>
+</div>-->
+
+<script>
+    function setup() {
+        sirasayisi = 10;
+
+        toplampuan = 0;
+
+    }
+    var tams = false;
+    var sayilar = [];
+    var i;
+    for(i = 1; i<=100; i++){
+       sayilar.push(i)
+    }
+    var adet;
+    function sleep(){
+    }
+    
+    function random(adet){
+        var j;
+        var sonuclar = [];
+        for(j=0;j<adet;j++){
+            var randnum = Math.floor(Math.random() * sayilar.length);
+            randel = sayilar[randnum];
+            sonuclar.push(randel);
+        }
+        return sonuclar;
+    }
+
+    var ms;
+    var sure = 1.0;
+    var progress = false;
+
+    function counterfun(){
+        document.getElementById("counter").innerHTML = "Geçen süre:\n "+ ms+" ms";
+        ms+=1;
+        sure = ms/100;
+        //sure+=1;
+    }
+    var sirasayisi = 10;
+
+    var toplampuan = 0;
+
+    
+    var cozumsuresi = 0;
+
+    
+
+    function func() {
+        if (sirasayisi == 0) {
+            toplampuan = Math.round(toplampuan * 100) / 100;
+            cozumsuresi = Math.round(cozumsuresi * 100) / 100;
+            alert("Puanınız: " + toplampuan +"\nÇözüm Süreniz: "+cozumsuresi+" sn");
+            return;
+        }
+        sirasayisi--;
+        sure = 1;
+        ms = 1;
+        var sayimik = [3,4,5,6,7,8,9,10]
+        var ranb = Math.floor(Math.random() * sayimik.length);
+        var num = sayimik[ranb];
+        //num = document.getElementById("fname").value;
+        var div = document.getElementById('results');
+        document.getElementById("game").innerHTML = "";
+        while(div.firstChild){
+            div.removeChild(div.firstChild);
+        }
+        var gecensure=0;
+        var div = document.getElementById('resultsubmit');
+        while(div.firstChild){
+            div.removeChild(div.firstChild);
+        }
+       /* if (!num){
+            alert("Lütfen sayı gir")
+        }
+        else if(num<0){
+            alert("Lütfen sayı miktarı bölümüne pozitif bir tamsayı giriniz.")
+        }
+        else{*/
+        if(!progress){
+            setInterval(counterfun, 10);
+        }
+        /* else{
+            sure = 0;
+        }*/
+        progress = true;
+        var randoms = random(num);
+        for(var n=0; n<randoms.length; n++){
+            if(n==randoms.length-1){
+                document.getElementById("game").innerHTML += randoms[n]
+            }
+            else{
+                document.getElementById("game").innerHTML += randoms[n]+" , ";
+            }
+        }
+        document.getElementById("counter").innerHTML="Geçen süre: 0.0 sn"
+        var userresult = document.createElement("input");
+        userresult.setAttribute("type", "number");
+        userresult.setAttribute("id", "numform");
+        userresult.setAttribute("placeholder", "Sonuç");
+        var endbutton = document.createElement("input");
+        endbutton.setAttribute("type", "submit");
+        endbutton.setAttribute("id", "endbutton");
+        endbutton.setAttribute("value", "Onayla ve devam et");
+        document.getElementById("results")
+        .appendChild(userresult);
+        document.getElementById("resultsubmit")
+        .appendChild(endbutton);
+        document.getElementById("numform").style.width = "80px"
+        document.getElementById("numform").style.height = "45px";
+        document.getElementById("numform").style.border = "3px outset black";
+        document.getElementById("numform").style.fontFamily = "Impact";
+        document.getElementById("numform").style.textAlign = "center";
+        document.getElementById("numform").style.fontSize = "19px";
+        document.getElementById("endbutton").style.width = "130px";
+        document.getElementById("endbutton").style.height = "50px";
+        document.getElementById("endbutton").style.border = "3px outset black";
+        document.getElementById("endbutton").style.wordWrap = "normal";
+        document.getElementById("endbutton").style.textAlign = "center";
+        document.getElementById("endbutton").style.backgroundColor= "rgb(77, 95, 134)";
+        document.getElementById("endbutton").style.fontFamily = "Impact";
+        document.getElementById("endbutton").style.color = "whitesmoke";
+        document.getElementById("endbutton").style.borderRadius = "15px";
+        document.getElementById("endbutton").onclick = function bitis() {
+            cozumsuresi +=sure;
+            var userans = document.getElementById("numform").value;
+            console.log(userans)
+            clearInterval(counterfun);
+            var div = document.getElementById("counterdiv");
+            var toplam = 0;
+            for(var i=0; i<randoms.length; i++){
+                toplam += randoms[i];
+            }
+            switch (randoms.length) {
+                    case 3: var PuanMultiplier = 0.8*2;
+                    case 4: var PuanMultiplier = 0.9*2;
+                    case 5: var PuanMultiplier = 1*2;
+                    case 6: var PuanMultiplier = 1.1*2;
+                    case 7: var PuanMultiplier = 1.2*2;
+                    case 8: var PuanMultiplier = 1.3*2;
+                    case 9: var PuanMultiplier = 1.4*2;
+                    case 10: var PuanMultiplier = 1.5*2;
+                }
+            if(tams){
+                var dorusonuc = Math.round(toplam / randoms.length);
+                
+                //var ZamanMultiplier = 3;
+                //var sorupuani = 100 - (Math.abs(dorusonuc - userans)) * PuanMultiplier - sure * ZamanMultiplier;
+                // var sorupuani = 100- ((sure+Math.abs(dorusonuc - userans))/(randoms.length*PuanMultiplier));
+                var sorupuani = 10-(sure*3+Math.abs(dorusonuc - userans))/PuanMultiplier;
+              /*  if (sorupuani<0 || sorupuani == null || userans == null) {
+                    sorupuani = 0;
+                }*/
+                if(!userans || sorupuani<0){
+                    sorupuani =0;
+                }
+                toplampuan += sorupuani;
+                func();
+            }
+            else {
+                var ZamanMultiplier = 3;    
+                var dorusonuc = toplam / randoms.length;
+                //var puan = 100 - (Math.abs(dorusonuc - userans)) * PuanMultiplier - sure * ZamanMultiplier;
+                var sorupuani = 10-(sure*3+Math.abs(dorusonuc - userans))/PuanMultiplier;
+              /*  if (sorupuani<0 || sorupuani == null || userans == null) {
+                    sorupuani = 0;
+                }*/
+                if(!userans || sorupuani<0){
+                    sorupuani =0;
+                }
+                toplampuan += sorupuani;
+                func();
+            }
+        }
+        //}
+    }
+
+    function tamsayi(){
+        if (!tams){
+            tams = true;
+            document.getElementById("checkbut").style.backgroundColor = "green";
+            console.log("GREEN")
+        }
+        else{
+            tams = false;
+            document.getElementById("checkbut").style.backgroundColor = "red";
+        }
+
+    }
+
+    function silme(){
+        location.reload();
+    }
+</script>
+
+
+
+</body>
+</html>
+
+<!--sa-->
