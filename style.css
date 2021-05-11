@@ -1,0 +1,84 @@
+.myDiv {
+    border: 5px outset black;
+    background-color: goldenrod;    
+    text-align: center;
+    word-wrap: break-word;
+    
+  }
+  
+/*@font-face{*/
+/*    font-family: 'Impact';*/
+/*    src: url(impact.ttf); */
+/*}                         */
+
+@font-face {
+    font-family: 'Apple Chancery Cursive';
+    src: url(apc101.ttf);
+}
+
+
+
+.heading {
+    text-align: center;
+    text-shadow: -5px -4.5px 0 black, 5px -4.5px 0 black, -5px 4.5px 0 black, 5px 4.5px 0 black;
+}
+
+.signature {
+    position: absolute;
+    top: 0px;
+    left: 16px;
+    font-size: 45px;
+    font-family: Brush Script MT, Brush Script Std, cursive;
+    color: blanchedalmond;
+}
+
+.counter {
+    position: absolute;
+    top: 300px;
+    right: 40px;
+    text-align: center;
+    font-size: 20px;
+    font-family: Apple Chancery, cursive;
+    border-radius: 15px;
+    font-weight:bolder;
+}
+
+.results {
+    position: absolute;
+
+    left: 200px;
+
+    top: 344px;
+
+}
+
+
+.resultsubmit {
+    position: absolute;
+
+    left: 180px;
+
+    top: 410px;
+}
+
+body {
+    margin: 0;
+    background-image: url('https://cdn.discordapp.com/attachments/795038640404168727/835817861078843422/backg_2.jpg');
+    background-repeat: no-repeat;
+}
+  
+.modlar {
+    position: absolute;
+    height: 100px
+}         
+
+#results {
+    position: absolute;
+    top: 50%;
+    left: 2.9%;
+}
+#resultsubmit {
+    position: absolute;
+    top: 58.4%;
+    left: 2%;
+}
